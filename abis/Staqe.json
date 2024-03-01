@@ -1,0 +1,593 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "stakeERC20",
+        "type": "address",
+        "internalType": "contract IERC20"
+      },
+      {
+        "name": "stakeERC721",
+        "type": "address",
+        "internalType": "contract IERC721"
+      },
+      {
+        "name": "rewardToken",
+        "type": "address",
+        "internalType": "contract IERC20"
+      },
+      { "name": "rewarder", "type": "address", "internalType": "address" },
+      { "name": "metadata", "type": "bytes32", "internalType": "bytes32" }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "addReward",
+    "inputs": [
+      { "name": "poolId", "type": "uint256", "internalType": "uint256" },
+      {
+        "name": "rewardToken",
+        "type": "address",
+        "internalType": "contract IERC20"
+      },
+      { "name": "rewardAmount", "type": "uint256", "internalType": "uint256" },
+      {
+        "name": "claimAfterBlocks",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      { "name": "isForERC721Stakers", "type": "bool", "internalType": "bool" }
+    ],
+    "outputs": [
+      { "name": "rewardId", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "blocksToReward",
+    "inputs": [
+      { "name": "poolId", "type": "uint256", "internalType": "uint256" },
+      { "name": "rewardId", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "calculateReward",
+    "inputs": [
+      { "name": "staker", "type": "address", "internalType": "address" },
+      { "name": "poolId", "type": "uint256", "internalType": "uint256" },
+      { "name": "rewardId", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [
+      { "name": "", "type": "address", "internalType": "contract IERC20" },
+      { "name": "", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "claimRewards",
+    "inputs": [
+      { "name": "poolIds", "type": "uint256[]", "internalType": "uint256[]" },
+      {
+        "name": "rewardIds",
+        "type": "uint256[][]",
+        "internalType": "uint256[][]"
+      },
+      { "name": "recipient", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [
+      {
+        "name": "tokens",
+        "type": "address[][]",
+        "internalType": "contract IERC20[][]"
+      },
+      {
+        "name": "amounts",
+        "type": "uint256[][]",
+        "internalType": "uint256[][]"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "editPool",
+    "inputs": [
+      { "name": "poolId", "type": "uint256", "internalType": "uint256" },
+      { "name": "metadata", "type": "bytes32", "internalType": "bytes32" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getClaimedAmount",
+    "inputs": [
+      { "name": "staker", "type": "address", "internalType": "address" },
+      { "name": "poolId", "type": "uint256", "internalType": "uint256" },
+      { "name": "rewardId", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getPool",
+    "inputs": [
+      { "name": "poolId", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct IStaqeStructs.Pool",
+        "components": [
+          {
+            "name": "stakeERC20",
+            "type": "address",
+            "internalType": "contract IERC20"
+          },
+          {
+            "name": "stakeERC721",
+            "type": "address",
+            "internalType": "contract IERC721"
+          },
+          {
+            "name": "rewardToken",
+            "type": "address",
+            "internalType": "contract IERC20"
+          },
+          { "name": "rewarder", "type": "address", "internalType": "address" },
+          { "name": "metadata", "type": "bytes32", "internalType": "bytes32" },
+          {
+            "name": "totalStakedERC20",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "totalStakedERC721",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "launchBlock",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getRewards",
+    "inputs": [
+      { "name": "poolId", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple[]",
+        "internalType": "struct IStaqeStructs.Reward[]",
+        "components": [
+          {
+            "name": "isForERC721Stakers",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "rewardToken",
+            "type": "address",
+            "internalType": "contract IERC20"
+          },
+          {
+            "name": "rewardAmount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "totalStaked",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "claimAfterBlocks",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "rewardBlock",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getStakes",
+    "inputs": [
+      { "name": "staker", "type": "address", "internalType": "address" },
+      { "name": "poolId", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple[]",
+        "internalType": "struct IStaqeStructs.Stake[]",
+        "components": [
+          {
+            "name": "amountERC20",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          { "name": "idERC721", "type": "uint256", "internalType": "uint256" },
+          {
+            "name": "stakeBlock",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "unstakeBlock",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getTotalPools",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isActiveStaker",
+    "inputs": [
+      { "name": "staker", "type": "address", "internalType": "address" },
+      { "name": "poolId", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isClaimed",
+    "inputs": [
+      { "name": "staker", "type": "address", "internalType": "address" },
+      { "name": "poolId", "type": "uint256", "internalType": "uint256" },
+      { "name": "rewardId", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isERC721",
+    "inputs": [
+      {
+        "name": "contractAddress",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "launchPool",
+    "inputs": [
+      {
+        "name": "stakeERC20",
+        "type": "address",
+        "internalType": "contract IERC20"
+      },
+      {
+        "name": "stakeERC721",
+        "type": "address",
+        "internalType": "contract IERC721"
+      },
+      {
+        "name": "rewardToken",
+        "type": "address",
+        "internalType": "contract IERC20"
+      },
+      { "name": "rewarder", "type": "address", "internalType": "address" },
+      { "name": "metadata", "type": "bytes32", "internalType": "bytes32" }
+    ],
+    "outputs": [
+      { "name": "poolId", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "stake",
+    "inputs": [
+      { "name": "poolId", "type": "uint256", "internalType": "uint256" },
+      { "name": "amount", "type": "uint256", "internalType": "uint256" },
+      { "name": "id", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [
+      { "name": "stakeId", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "unstake",
+    "inputs": [
+      { "name": "poolId", "type": "uint256", "internalType": "uint256" },
+      { "name": "stakeIds", "type": "uint256[]", "internalType": "uint256[]" }
+    ],
+    "outputs": [
+      { "name": "amountERC20", "type": "uint256", "internalType": "uint256" },
+      { "name": "idsERC721", "type": "uint256[]", "internalType": "uint256[]" }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "event",
+    "name": "PoolEdited",
+    "inputs": [
+      {
+        "name": "poolId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "metadata",
+        "type": "bytes32",
+        "indexed": false,
+        "internalType": "bytes32"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "PoolLaunched",
+    "inputs": [
+      {
+        "name": "poolId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "stakeERC20",
+        "type": "address",
+        "indexed": true,
+        "internalType": "contract IERC20"
+      },
+      {
+        "name": "stakeERC721",
+        "type": "address",
+        "indexed": true,
+        "internalType": "contract IERC721"
+      },
+      {
+        "name": "rewardToken",
+        "type": "address",
+        "indexed": false,
+        "internalType": "contract IERC20"
+      },
+      {
+        "name": "rewarder",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "metadata",
+        "type": "bytes32",
+        "indexed": false,
+        "internalType": "bytes32"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RewardAdded",
+    "inputs": [
+      {
+        "name": "poolId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "rewardId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "rewardToken",
+        "type": "address",
+        "indexed": true,
+        "internalType": "contract IERC20"
+      },
+      {
+        "name": "rewardAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "totalStakedERC20",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "totalStakedERC721",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "isForERC721Stakers",
+        "type": "bool",
+        "indexed": false,
+        "internalType": "bool"
+      },
+      {
+        "name": "claimAfterBlock",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RewardClaimed",
+    "inputs": [
+      {
+        "name": "claimant",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "poolId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "rewardId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "rewardToken",
+        "type": "address",
+        "indexed": false,
+        "internalType": "contract IERC20"
+      },
+      {
+        "name": "rewardAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "StakeCreated",
+    "inputs": [
+      {
+        "name": "staker",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "poolId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "stakeId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "stakeAmountERC20",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "stakeAmountERC721",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "StakeWithdrawn",
+    "inputs": [
+      {
+        "name": "staker",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "poolId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "stakeAmountERC20",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "stakeAmountERC721",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  { "type": "error", "name": "InvalidAmount", "inputs": [] },
+  { "type": "error", "name": "InvalidERC721Token", "inputs": [] },
+  { "type": "error", "name": "InvalidMetadata", "inputs": [] },
+  { "type": "error", "name": "InvalidRewardToken", "inputs": [] },
+  { "type": "error", "name": "InvalidStakeToken", "inputs": [] },
+  { "type": "error", "name": "OnlyAvailableToStakersInGenesis", "inputs": [] },
+  {
+    "type": "error",
+    "name": "OnlyRewinderHasAccessToAddRewards",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "OnlyRewinderHasAccessToEditMetadata",
+    "inputs": []
+  },
+  { "type": "error", "name": "PoolDoesNotExist", "inputs": [] },
+  { "type": "error", "name": "PoolDoesNotHaveStakes", "inputs": [] },
+  { "type": "error", "name": "ReentrancyGuardReentrantCall", "inputs": [] },
+  { "type": "error", "name": "RewardAlreadyClaimed", "inputs": [] },
+  { "type": "error", "name": "RewardIsEmpty", "inputs": [] },
+  { "type": "error", "name": "RewardIsNotYetAvailableForClaim", "inputs": [] },
+  { "type": "error", "name": "RewardNotFoundInPool", "inputs": [] },
+  { "type": "error", "name": "RewardTransferFailed", "inputs": [] },
+  { "type": "error", "name": "StakeTransferFailed", "inputs": [] },
+  { "type": "error", "name": "StakerDoesNotHaveStakesInPool", "inputs": [] },
+  { "type": "error", "name": "UnstakeOnNextBlockAndGetReward", "inputs": [] },
+  { "type": "error", "name": "UnstakeTransferFailed", "inputs": [] }
+]

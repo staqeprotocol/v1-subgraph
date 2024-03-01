@@ -1,0 +1,41 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Staqe
+    network: mainnet
+    source:
+      address: "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
+      abi: Staqe
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - PoolEdited
+        - PoolLaunched
+        - RewardAdded
+        - RewardClaimed
+        - StakeCreated
+        - StakeWithdrawn
+      abis:
+        - name: Staqe
+          file: ./abis/Staqe.json
+      eventHandlers:
+        - event: PoolEdited(indexed uint256,bytes32)
+          handler: handlePoolEdited
+        - event: PoolLaunched(indexed uint256,indexed address,indexed address,address,address,bytes32)
+          handler: handlePoolLaunched
+        - event: RewardAdded(indexed uint256,indexed uint256,indexed address,uint256,uint256,uint256,bool,uint256)
+          handler: handleRewardAdded
+        - event: RewardClaimed(indexed address,indexed uint256,indexed uint256,address,uint256)
+          handler: handleRewardClaimed
+        - event: StakeCreated(indexed address,indexed uint256,indexed uint256,uint256,uint256)
+          handler: handleStakeCreated
+        - event: StakeWithdrawn(indexed address,indexed uint256,uint256,uint256)
+          handler: handleStakeWithdrawn
+      file: ./src/staqe.ts

@@ -1,0 +1,71 @@
+type PoolEdited @entity(immutable: true) {
+  id: Bytes!
+  poolId: BigInt! # uint256
+  metadata: Bytes! # bytes32
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PoolLaunched @entity(immutable: true) {
+  id: Bytes!
+  poolId: BigInt! # uint256
+  stakeERC20: Bytes! # address
+  stakeERC721: Bytes! # address
+  rewardToken: Bytes! # address
+  rewarder: Bytes! # address
+  metadata: Bytes! # bytes32
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RewardAdded @entity(immutable: true) {
+  id: Bytes!
+  poolId: BigInt! # uint256
+  rewardId: BigInt! # uint256
+  rewardToken: Bytes! # address
+  rewardAmount: BigInt! # uint256
+  totalStakedERC20: BigInt! # uint256
+  totalStakedERC721: BigInt! # uint256
+  isForERC721Stakers: Boolean! # bool
+  claimAfterBlock: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RewardClaimed @entity(immutable: true) {
+  id: Bytes!
+  claimant: Bytes! # address
+  poolId: BigInt! # uint256
+  rewardId: BigInt! # uint256
+  rewardToken: Bytes! # address
+  rewardAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type StakeCreated @entity(immutable: true) {
+  id: Bytes!
+  staker: Bytes! # address
+  poolId: BigInt! # uint256
+  stakeId: BigInt! # uint256
+  stakeAmountERC20: BigInt! # uint256
+  stakeAmountERC721: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type StakeWithdrawn @entity(immutable: true) {
+  id: Bytes!
+  staker: Bytes! # address
+  poolId: BigInt! # uint256
+  stakeAmountERC20: BigInt! # uint256
+  stakeAmountERC721: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
