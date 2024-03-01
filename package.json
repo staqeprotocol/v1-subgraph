@@ -1,5 +1,5 @@
 {
-  "name": "staqe",
+  "name": "@staqeprotocol/v1-subgraph",
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
