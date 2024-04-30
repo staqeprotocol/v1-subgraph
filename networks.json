@@ -1,0 +1,8 @@
+{
+  "scroll-sepolia": {
+    "StaqeProtocol": {
+      "address": "0x9cbD0A9D9fb8e8c1baA4687E4e8068aDA57a220f",
+      "startBlock": 4103020
+    }
+  }
+}
